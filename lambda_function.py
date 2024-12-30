@@ -10,7 +10,7 @@ def lambda_handler(event, context):
     try:
         body = json.loads(event.get("body", "{}"))  # Extraire et analyser le corps JSON
         question = body.get("question", "Bonjour, y a-t-il une question ?")
-        username = body.get("username", "Cyril")
+        username = body.get("username", "Virginie")
     except json.JSONDecodeError:
         question = "Bonjour, y a-t-il une question ?"  # Valeur par défaut en cas d'erreur
 

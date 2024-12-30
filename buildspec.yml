@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "==== Installation de pipenv et génération du fichier requirements.txt ===="
+      - pip install --upgrade pip
+      - pip install pipenv
+      # Installe les dépendances à partir du Pipfile
+      - pipenv install --dev --skip-lock
+      # Génére le fichier requirements.txt
+      - pipenv requirements > requirements.txt
+  build:
+    commands:
+      - echo "==== Installation des dépendances dans le dossier 'python' pour le layer ===="
+      - mkdir -p python/lib/python3.11/site-packages
+      - pip install -r requirements.txt -t python/lib/python3.11/site-packages
+      # Archive le dossier python pour le layer
+      - zip -r layer.zip python
+      - rm -rf python
+      - mv layer.zip /tmp/layer.zip
+      - echo "==== Zippage du code source ===="
+      # Archive le code source (si vos .py se trouvent dans src/, ajustez au besoin)
+      - zip -r task_manager_lambda.zip *
+      - mv /tmp/layer.zip layer.zip
+      - echo "==== Envoi de layer.zip dans le bucket S3 ===="
+      - aws s3 cp layer.zip s3://cmarchive-task-manager/layer.zip
+
+  post_build:
+    commands:
+      - echo "==== Fin du build, préparation des artefacts ===="
+
+artifacts:
+  files:
+    - task_manager_lambda.zip
