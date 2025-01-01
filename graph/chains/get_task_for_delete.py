@@ -11,7 +11,7 @@ prompt_template = ChatPromptTemplate.from_messages(
         (
             "system",
             """
-            Tu dois ici construire une tâche en rapport au contexte.
+            Tu dois ici construire un objet tâche en rapport au contexte qui sera ensuite supprimé.
             Voici le contexte : \n{context}.\n
             Voici l'identifiant de la tâche : {id}.
             """,
