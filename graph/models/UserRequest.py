@@ -11,6 +11,8 @@ class UserRequest(BaseModel):
         Responsable de la tâche. Identifie dans la requête à qui la tâche est confiée.
         1. Soit tu arrives à identifier la personne à qui la tâche est confiée.
         2. Soit si tu n'y arrive pas utilise l'utilisateur connecté.
+        Exemple : "Je dois aller chez le dentiste pour Aurore"
+        Le responsable est "Je" donc l'utilisateur connecté
         """
     )
     type: str = Field(
