@@ -3,7 +3,8 @@ from pydantic.v1 import BaseModel, Field
 
 class UserRequest(BaseModel):
     """
-    Récupère la personne a qui la tâche est confiée et quelle est le type d'action à réaliser
+    Récupère la personne a qui la tâche est confiée et quelle est le type d'action à réaliser.
+    Spécifie si la requête de l'utilisateur correspond à une tâche ou non.
     """
 
     responsable: str = Field(
@@ -17,4 +18,7 @@ class UserRequest(BaseModel):
     )
     type: str = Field(
         description="Type d'action à effectuer : ajouter, modifier, supprimer, consulter"
+    )
+    is_task: bool = Field(
+        description="Indique si la requête de l'utilisateur correspond à une tâche ou non, true si ca correspond à une tâche, false sinon"
     )

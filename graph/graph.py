@@ -53,6 +53,8 @@ def decide_to_node_on_startup(state: GraphState) -> str:
     :return: Le nom du prochain nœud.
     """
     user_request = state.get("user_request")
+    if user_request.is_task is False:
+        return END
     if not user_request or not hasattr(user_request, "type"):
         return GET_TASKS
 
@@ -94,6 +96,7 @@ workflow.add_conditional_edges(
         GET_TASKS: GET_TASKS,
         GET_TASK_FOR_DELETE: GET_TASK_FOR_DELETE,
         GET_TASK_FOR_MODIFY: GET_TASK_FOR_MODIFY,
+        END: END
     },
 )
 
