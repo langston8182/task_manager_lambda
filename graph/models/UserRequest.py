@@ -9,11 +9,15 @@ class UserRequest(BaseModel):
 
     responsable: str = Field(
         description="""
-        Responsable de la tâche. Identifie dans la requête à qui la tâche est confiée.
-        1. Soit tu arrives à identifier la personne à qui la tâche est confiée.
-        2. Soit si tu n'y arrive pas utilise l'utilisateur connecté.
-        Exemple : "Je dois aller chez le dentiste pour Aurore"
-        Le responsable est "Je" donc l'utilisateur connecté
+        Vous recevez une requête utilisateur décrivant une tâche.
+        Règles d'extraction :
+
+        Si la phrase est formulée à la première personne (commence par 'je' ou 'j''), le responsable de la tâche est l'utilisateur connecté.
+        Sinon, identifiez la personne mentionnée après le mot 'pour'.
+        Exemple :
+        'Je dois aller chez le dentiste pour Aurore' → responsable = utilisateur connecté
+        'Il faut préparer le dossier pour Lissandro' → responsable = 'Lissandro'
+        Donnez uniquement le nom du responsable.
         """
     )
     type: str = Field(
