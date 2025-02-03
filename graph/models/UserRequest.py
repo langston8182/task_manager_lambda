@@ -16,7 +16,8 @@ class UserRequest(BaseModel):
         Sinon, identifiez la personne mentionnée après le mot 'pour'.
         Exemple :
         'Je dois aller chez le dentiste pour Aurore' → responsable = utilisateur connecté
-        'Il faut préparer le dossier pour Lissandro' → responsable = 'Lissandro'
+        'Créer une tâche intitulée "Faire les devoirs de Lissandro" pour Cyril' → responsable = Cyril
+        'Il faut préparer le dossier pour Lissandro' → responsable = pas de responsable, donc utilisateur connecté par défaut
         Donnez uniquement le nom du responsable.
         """
     )
