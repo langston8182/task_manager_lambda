@@ -25,6 +25,8 @@ def get_tasks(state: GraphState) -> Dict[str, Any]:
     result = retrieval_chain.invoke(
         input={"input": f"{question}\nJe m'appelle {connected_user}"}
     )
+    if not result['context']:
+        return {"ui_response": "Vous n’avez pas de tâches enregistrées pour le moment."}
 
     answer = result.get("answer", "Aucune réponse disponible.")
     return {"ui_response": answer}

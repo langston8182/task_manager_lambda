@@ -19,5 +19,7 @@ def get_all_tasks(state: GraphState) -> Dict[str, Any]:
     responsable = task.responsable
     question = f"Quelles sont toutes les taches de {responsable} ?"
     result = retrieval_chain.invoke(input={"input": question})
+    if not result['context']:
+        return {"ui_response": "Vous n’avez pas de tâches enregistrées pour le moment."}
 
     return {"ui_response": result.get("answer", "Aucune réponse trouvée.")}

@@ -43,7 +43,7 @@ def run_llm(question: str, username: str) -> str:
 if __name__ == "__main__":
     # run_llm(question="Je dois réparer la voiture pour demain")
     run_llm(
-        question="comment reparer sa voiture ?",
+        question="Quelles sont mes tâches ?",
         username="Cyril",
     )
     # run_llm(question="Virginie dois faire la vaisselle dans 2 jours", username="Cyril")

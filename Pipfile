@@ -7,8 +7,8 @@ name = "pypi"
 langchain = "*"
 langchain-mongodb = "*"
 pymongo = "*"
-langgraph = "*"
 langchain-openai = "*"
+langgraph = "*"
 
 [dev-packages]
 

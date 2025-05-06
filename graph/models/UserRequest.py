@@ -25,5 +25,11 @@ class UserRequest(BaseModel):
         description="Type d'action à effectuer : ajouter, modifier, supprimer, consulter"
     )
     is_task: bool = Field(
-        description="Indique si la requête de l'utilisateur correspond à une tâche ou non, true si ca correspond à une tâche, false sinon"
+        description="""
+    Indique si la requête utilisateur correspond à une action liée aux tâches (ajout, suppression, consultation, modification).
+    Répondre `true` pour toute requête en rapport avec des tâches, même sous forme de question comme "Quelles sont mes tâches ?".
+    Répondre `false` si la requête ne concerne pas les tâches (ex: météo, cuisine, ou hors-sujet).
+    exemple : Quelles sont mes tâches ? → is_task = true
+    exemple : Quel temps fait-il aujourd'hui ? → is_task = false
+    """
     )
